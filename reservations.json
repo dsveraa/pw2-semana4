@@ -1,158 +1,158 @@
 [
-    {
-        "origin": "Santiago",
-        "destination": "Buenos Aires",
-        "hotel": "Alvear Palace Hotel",
-        "country": "Argentina",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    },
-    {
-        "origin": "Santiago",
-        "destination": "Lima",
-        "hotel": "Belmond Miraflores Park",
-        "country": "Peru",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    },
-    {
-        "origin": "Santiago",
-        "destination": "Miami",
-        "hotel": "The Setai Miami Beach",
-        "country": "Estados Unidos",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    },
-    {
-        "origin": "Lima",
-        "destination": "Santiago",
-        "hotel": "The Ritz-Carlton Santiago",
-        "country": "Chile",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    },
-    {
-        "origin": "Lima",
-        "destination": "Buenos Aires",
-        "hotel": "Alvear Palace Hotel",
-        "country": "Argentina",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    },
-    {
-        "origin": "Lima",
-        "destination": "Miami",
-        "hotel": "The Setai Miami Beach",
-        "country": "Estados Unidos",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    },
-    {
-        "origin": "Buenos Aires",
-        "destination": "Santiago",
-        "hotel": "The Ritz-Carlton Santiago",
-        "country": "Chile",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    },
-    {
-        "origin": "Buenos Aires",
-        "destination": "Lima",
-        "hotel": "Belmond Miraflores Park",
-        "country": "Peru",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    },
-    {
-        "origin": "Buenos Aires",
-        "destination": "Miami",
-        "hotel": "The Setai Miami Beach",
-        "country": "Estados Unidos",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    },
-    {
-        "origin": "Miami",
-        "destination": "Santiago",
-        "hotel": "The Ritz-Carlton Santiago",
-        "country": "Chile",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    },
-    {
-        "origin": "Miami",
-        "destination": "Lima",
-        "hotel": "Belmond Miraflores Park",
-        "country": "Peru",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    },
-    {
-        "origin": "Miami",
-        "destination": "Buenos Aires",
-        "hotel": "Alvear Palace Hotel",
-        "country": "Argentina",
-        "dates": [
-            "2024-10-01",
-            "2024-10-02",
-            "2024-10-03",
-            "2024-10-04",
-            "2024-10-05"
-        ]
-    }
+  {
+    "origin": "Santiago",
+    "destination": "Buenos Aires",
+    "hotel": "Alvear Palace Hotel",
+    "country": "Argentina",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  },
+  {
+    "origin": "Santiago",
+    "destination": "Lima",
+    "hotel": "Belmond Miraflores Park",
+    "country": "Peru",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  },
+  {
+    "origin": "Santiago",
+    "destination": "Miami",
+    "hotel": "The Setai Miami Beach",
+    "country": "Estados Unidos",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  },
+  {
+    "origin": "Lima",
+    "destination": "Santiago",
+    "hotel": "The Ritz-Carlton",
+    "country": "Chile",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  },
+  {
+    "origin": "Lima",
+    "destination": "Buenos Aires",
+    "hotel": "Alvear Palace Hotel",
+    "country": "Argentina",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  },
+  {
+    "origin": "Lima",
+    "destination": "Miami",
+    "hotel": "The Setai Miami Beach",
+    "country": "Estados Unidos",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  },
+  {
+    "origin": "Buenos Aires",
+    "destination": "Santiago",
+    "hotel": "The Ritz-Carlton",
+    "country": "Chile",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  },
+  {
+    "origin": "Buenos Aires",
+    "destination": "Lima",
+    "hotel": "Belmond Miraflores Park",
+    "country": "Peru",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  },
+  {
+    "origin": "Buenos Aires",
+    "destination": "Miami",
+    "hotel": "The Setai Miami Beach",
+    "country": "Estados Unidos",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  },
+  {
+    "origin": "Miami",
+    "destination": "Santiago",
+    "hotel": "The Ritz-Carlton",
+    "country": "Chile",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  },
+  {
+    "origin": "Miami",
+    "destination": "Lima",
+    "hotel": "Belmond Miraflores Park",
+    "country": "Peru",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  },
+  {
+    "origin": "Miami",
+    "destination": "Buenos Aires",
+    "hotel": "Alvear Palace Hotel",
+    "country": "Argentina",
+    "dates": [
+      "2024-10-01",
+      "2024-10-02",
+      "2024-10-03",
+      "2024-10-04",
+      "2024-10-05"
+    ]
+  }
 ]

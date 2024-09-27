@@ -10,6 +10,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
 
@@ -17,6 +18,8 @@
 
 $json_data = file_get_contents('reservations.json');
 $packages = json_decode($json_data, true);
+
+$suggestions[] = "";
 
 class Package {
     public $hotel;
@@ -34,14 +37,14 @@ class Package {
     }
 
     public function show_info() {
-        echo 'Hotel: ' . $this-> hotel . '<br>';
-        echo 'Ciudad: ' . $this-> city . '<br>';
-        echo 'País: ' . $this-> country . '<br>';
+        echo '<b>Hotel</b>: ' . $this-> hotel . '<br>';
+        echo '<b>Ciudad</b>: ' . $this-> city . '<br>';
+        echo '<b>País</b>: ' . $this-> country . '<br>';
 
         $this->es_date($this->date);
         
-        echo 'Fecha: ' . $this-> date . '<br>';
-        echo 'Noches: ' . $this-> nights . '<br>';
+        echo '<b>Fecha</b>: ' . $this-> date . '<br>';
+        echo '<b>Noches</b>: ' . $this-> nights . '<br>';
     }
 
     private function es_date() {
@@ -73,22 +76,76 @@ function create_package($pkg, $date, $nights) {
     return $new_package;
 }
 
+function add_suggestions($packages, $date, $nights) {
+    $random_index = array_rand($packages);
+    $pkg = $packages[$random_index];
+    $suggestion = new Package($pkg['hotel'], $pkg['destination'], $pkg['country'], $date, $nights);
+    return $suggestion;
+}
+
 ?>
 
 <body>
-    <div class="container">
-        <a href="index.php">Inicio</a>
+    <div class="bg-body-tertiary">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.php">Inicio</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell"></i>
+                                <span class="badge bg-danger" id="count-label"><?php
+                                    if (isset($_GET['search'])) {
+                                        echo '+1';
+                                    }
+                                    ?></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right p-2" id="notificationDropdown" aria-labelledby="notificationDropdown">
+                                <?php
+                                if (isset($_GET['search'])) {
+                                    $suggestion = add_suggestions($packages, $date, $nights);
+                                    echo '¿Qué tal unas vacaciones alojando en el hotel <b>'. $suggestion->hotel . '</b> en la ciudad de <b>' . $suggestion->city . '</b>?';
+                                }
+                                ?>
+                            </div>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>    
+    <div class="container my-5">
         <h1>Buscar y reservar vuelos y hoteles</h1>
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="get">
-            <label for="origin">Origen:</label>
-            <input type="text" id="origin" name="origin" required><br>
-            <label for="destination">Destino:</label>
-            <input type="text" id="destination" name="destination" required><br>
-            <label for="date">Fecha:</label>
-            <input type="date" id="date" name="date"><br>
-            <label for="nights">Noches de hotel:</label>
-            <input type="text" id="nights" name="nights" required><br>
-            <input type="submit" name="search" value="Buscar">
+        <h5 class="text-primary">Santiago, Buenos Aires, Lima o Miami entre el 01 hasta el 05 de octubre.</h5>
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="get" class="my-5">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="origin" class="form-label">Origen:</label>
+                    <input type="text" id="origin" name="origin" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="destination" class="form-label">Destino:</label>
+                    <input type="text" id="destination" name="destination" class="form-control" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="date" class="form-label">Fecha:</label>
+                    <input type="date" id="date" name="date" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="nights" class="form-label">Noches de hotel:</label>
+                    <input type="text" id="nights" name="nights" class="form-control" required>
+                </div>
+            </div>
+            <button type="submit" name="search" class="btn btn-primary">Buscar</button>
         </form>
     
         <div id="search-results" class="my-3">
@@ -103,6 +160,7 @@ function create_package($pkg, $date, $nights) {
                     $new_package = compare_info($packages, $origin, $destination, $date, $nights);
 
                     if (!empty($new_package)) {
+                        echo '<h2>Resultado de la búsqueda</h2>';
                         $new_package->show_info();
                     ?>
                         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="get">
@@ -113,12 +171,12 @@ function create_package($pkg, $date, $nights) {
                         $message = 'No se encontraron coincidencias.';
                     }
                 } else if (isset($_GET['reserve'])) {
-                    $message = "El paquete ha sido reservado.";
+                    $message = "El paquete ha sido reservado para la fecha seleccionada.";
                 }
             }
             ?>
             <?php if (isset($message)): ?>
-                <p><?php echo $message; ?></p>
+                <h5><?php echo '<div class="text-success">' . $message . '</h5>'?>
             <?php endif; ?>
         </div>
     </div>
@@ -128,4 +186,5 @@ function create_package($pkg, $date, $nights) {
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+<script src="./script.js"></script>
 </html>
