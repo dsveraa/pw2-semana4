@@ -168,11 +168,6 @@ function add_suggestions($packages, $date, $nights, $destination) {
         <div id="search-results" class="my-3">
             <?php
             if (isset($_GET['search'])) {
-                $origin = isset($_GET['origin']) ? $_GET['origin'] : null;
-                $destination = isset($_GET['destination']) ? $_GET['destination'] : null;
-                $date = isset($_GET['date']) ? $_GET['date'] : null;
-                $nights = isset($_GET['nights']) ? $_GET['nights'] : null;
-
                 $new_package = compare_info($packages, $origin, $destination, $date, $nights);
 
                 echo '<h1>Resultado de la búsqueda</h1>';
