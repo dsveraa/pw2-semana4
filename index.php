@@ -20,6 +20,17 @@
 $json_data = file_get_contents('reservations.json');
 $packages = json_decode($json_data, true);
 
+$origin = $destination = $date = $nights = null;
+
+if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET)) {
+    if (isset($_GET['search'])) {
+        $origin = isset($_GET['origin']) ? $_GET['origin'] : null;
+        $destination = isset($_GET['destination']) ? $_GET['destination'] : null;
+        $date = isset($_GET['date']) ? $_GET['date'] : null;
+        $nights = isset($_GET['nights']) ? $_GET['nights'] : null;
+    }
+}
+
 class Package {
     public $hotel;
     public $city;
@@ -77,10 +88,15 @@ function create_package($pkg, $date, $nights) {
     return $new_package;
 }
 
-function add_suggestions($packages, $date, $nights) {
+function add_suggestions($packages, $date, $nights, $destination) {
     $random_index = array_rand($packages);
     $pkg = $packages[$random_index];
-    $suggestion = new Package($pkg['hotel'], $pkg['destination'], $pkg['country'], $date, $nights);
+    
+    if ($pkg['destination'] != $destination) {
+        $suggestion = new Package($pkg['hotel'], $pkg['destination'], $pkg['country'], $date, $nights);
+    } else {
+        add_suggestions($packages, $date, $nights, $destination);
+    }
     return $suggestion;
 }
 
@@ -104,10 +120,12 @@ function add_suggestions($packages, $date, $nights) {
                             </a>
                             <div class="dropdown-menu dropdown-menu-right p-2" id="notificationDropdown" aria-labelledby="notificationDropdown">
                                 <?php
-                                if (isset($_GET['search'])) {
-                                    $suggestion = add_suggestions($packages, $date, $nights);
-                                    echo '¿Qué tal unas vacaciones alojando en el hotel <b>'. $suggestion->hotel . '</b> en la ciudad de <b>' . $suggestion->city . '</b>?';
-                                }
+                                if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET)) {
+                                    if (isset($_GET['search'])) {
+                                        $suggestion = add_suggestions($packages, $date, $nights, $destination);
+                                        echo '¿Qué tal unas vacaciones alojando en el hotel <b>'. $suggestion->hotel . '</b> en la ciudad de <b>' . $suggestion->city . '</b>?';
+                                    }
+                            }
                                 ?>
                             </div>
                         </li>
@@ -149,30 +167,30 @@ function add_suggestions($packages, $date, $nights) {
     
         <div id="search-results" class="my-3">
             <?php
-            if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET)) {
-                if (isset($_GET['search'])) {
-                    $origin = isset($_GET['origin']) ? $_GET['origin'] : null;
-                    $destination = isset($_GET['destination']) ? $_GET['destination'] : null;
-                    $date = isset($_GET['date']) ? $_GET['date'] : null;
-                    $nights = isset($_GET['nights']) ? $_GET['nights'] : null;
+            if (isset($_GET['search'])) {
+                $origin = isset($_GET['origin']) ? $_GET['origin'] : null;
+                $destination = isset($_GET['destination']) ? $_GET['destination'] : null;
+                $date = isset($_GET['date']) ? $_GET['date'] : null;
+                $nights = isset($_GET['nights']) ? $_GET['nights'] : null;
 
-                    $new_package = compare_info($packages, $origin, $destination, $date, $nights);
+                $new_package = compare_info($packages, $origin, $destination, $date, $nights);
 
-                    echo '<h1>Resultado de la búsqueda</h1>';
-                    if (!empty($new_package)) {
-                        $new_package->show_info();
-                    ?>
-                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="get">
-                            <input type="submit" name="reserve" value="Reservar" class="btn btn-success my-2">
-                        </form>
-                    <?php
-                    } else {
-                        $message = 'No se encontraron coincidencias.';
-                    }
-                } else if (isset($_GET['reserve'])) {
-                    $message = "El paquete ha sido reservado para la fecha seleccionada.";
+                echo '<h1>Resultado de la búsqueda</h1>';
+
+                if (!empty($new_package)) {
+                    $new_package->show_info();
+                ?>
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="get">
+                        <input type="submit" name="reserve" value="Reservar" class="btn btn-success my-2">
+                    </form>
+                <?php
+                } else {
+                    $message = 'No se encontraron coincidencias.';
                 }
+            } else if (isset($_GET['reserve'])) {
+                $message = "El paquete ha sido reservado para la fecha seleccionada.";
             }
+            
             ?>
             <?php if (isset($message)): ?>
                 <h5><?php echo '<div class="text-success">' . $message . '</h5>'?>
