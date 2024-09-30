@@ -103,7 +103,7 @@ function add_suggestions($packages, $date, $nights, $destination) {
 ?>
 
 <body>
-    <div class="bg-body-secondary">
+    <div class="bg-body-tertiary">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-body-secodary">
                 <div class="container-fluid">
