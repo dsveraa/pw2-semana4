@@ -103,9 +103,9 @@ function add_suggestions($packages, $date, $nights, $destination) {
 ?>
 
 <body>
-    <div class="bg-body-tertiary">
+    <div class="bg-body-secondary">
         <div class="container">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <nav class="navbar navbar-expand-lg bg-body-secodary">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="index.php">Inicio</a>
                     <ul class="navbar-nav ms-auto">
@@ -124,7 +124,11 @@ function add_suggestions($packages, $date, $nights, $destination) {
                                     if (isset($_GET['search'])) {
                                         $suggestion = add_suggestions($packages, $date, $nights, $destination);
                                         echo '¿Qué tal unas vacaciones alojando en el hotel <b>'. $suggestion->hotel . '</b> por <b>'. $nights .' noches</b> en la ciudad de <b>' . $suggestion->city . '</b>?';
+                                    } else {
+                                        echo 'Sin notificaciones';
                                     }
+                                } else {
+                                    echo 'Sin notificaciones';
                                 }
                                 ?>
                             </div>
