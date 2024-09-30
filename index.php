@@ -123,7 +123,7 @@ function add_suggestions($packages, $date, $nights, $destination) {
                                 if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET)) {
                                     if (isset($_GET['search'])) {
                                         $suggestion = add_suggestions($packages, $date, $nights, $destination);
-                                        echo '¿Qué tal unas vacaciones alojando en el hotel <b>'. $suggestion->hotel . '</b> en la ciudad de <b>' . $suggestion->city . '</b>?';
+                                        echo '¿Qué tal unas vacaciones alojando en el hotel <b>'. $suggestion->hotel . '</b> por <b>'. $nights .' noches</b> en la ciudad de <b>' . $suggestion->city . '</b>?';
                                     }
                                 }
                                 ?>
