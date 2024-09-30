@@ -117,7 +117,7 @@ function add_suggestions($packages, $date, $nights) {
         </div>
     </div>    
     <div class="container my-5">
-        <?php if (!isset($_GET['search'])): ?>
+        <?php if (!isset($_GET['search']) and !isset($_GET['reserve'])): ?>
         <h1>Buscar y reservar vuelos y hoteles</h1>
         <h5 class="text-primary">Santiago, Buenos Aires, Lima o Miami entre el 01 hasta el 05 de octubre.</h5>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="get" class="my-5">
@@ -158,8 +158,8 @@ function add_suggestions($packages, $date, $nights) {
 
                     $new_package = compare_info($packages, $origin, $destination, $date, $nights);
 
+                    echo '<h1>Resultado de la búsqueda</h1>';
                     if (!empty($new_package)) {
-                        echo '<h1>Resultado de la búsqueda</h1>';
                         $new_package->show_info();
                     ?>
                         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="get">
