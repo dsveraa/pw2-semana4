@@ -12,14 +12,13 @@
     />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <?php 
 
 $json_data = file_get_contents('reservations.json');
 $packages = json_decode($json_data, true);
-
-$suggestions[] = "";
 
 class Package {
     public $hotel;
@@ -37,6 +36,7 @@ class Package {
     }
 
     public function show_info() {
+        echo '<div class="my-3">';
         echo '<b>Hotel</b>: ' . $this-> hotel . '<br>';
         echo '<b>Ciudad</b>: ' . $this-> city . '<br>';
         echo '<b>País</b>: ' . $this-> country . '<br>';
@@ -45,6 +45,7 @@ class Package {
         
         echo '<b>Fecha</b>: ' . $this-> date . '<br>';
         echo '<b>Noches</b>: ' . $this-> nights . '<br>';
+        echo '</div>';
     }
 
     private function es_date() {
@@ -91,12 +92,7 @@ function add_suggestions($packages, $date, $nights) {
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="index.php">Inicio</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-bell"></i>
@@ -116,12 +112,12 @@ function add_suggestions($packages, $date, $nights) {
                             </div>
                         </li>
                     </ul>
-                    </div>
                 </div>
             </nav>
         </div>
     </div>    
     <div class="container my-5">
+        <?php if (!isset($_GET['search'])): ?>
         <h1>Buscar y reservar vuelos y hoteles</h1>
         <h5 class="text-primary">Santiago, Buenos Aires, Lima o Miami entre el 01 hasta el 05 de octubre.</h5>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="get" class="my-5">
@@ -147,6 +143,9 @@ function add_suggestions($packages, $date, $nights) {
             </div>
             <button type="submit" name="search" class="btn btn-primary">Buscar</button>
         </form>
+        <?php 
+        endif; 
+        ?>
     
         <div id="search-results" class="my-3">
             <?php
@@ -160,7 +159,7 @@ function add_suggestions($packages, $date, $nights) {
                     $new_package = compare_info($packages, $origin, $destination, $date, $nights);
 
                     if (!empty($new_package)) {
-                        echo '<h2>Resultado de la búsqueda</h2>';
+                        echo '<h1>Resultado de la búsqueda</h1>';
                         $new_package->show_info();
                     ?>
                         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="get">

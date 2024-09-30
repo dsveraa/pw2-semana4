@@ -1,0 +1,16 @@
+.nav-item .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    z-index: 10;
+    width: auto; 
+    max-width: 250px; 
+    transform: translateX(-20%);
+}
+
+@media (max-width: 768px) {
+    .nav-item .dropdown-menu {
+        left: auto;
+        right: 0;
+        transform: translateX(-20%);
+    }
+}
