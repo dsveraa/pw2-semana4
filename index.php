@@ -125,7 +125,7 @@ function add_suggestions($packages, $date, $nights, $destination) {
                                         $suggestion = add_suggestions($packages, $date, $nights, $destination);
                                         echo '¿Qué tal unas vacaciones alojando en el hotel <b>'. $suggestion->hotel . '</b> en la ciudad de <b>' . $suggestion->city . '</b>?';
                                     }
-                            }
+                                }
                                 ?>
                             </div>
                         </li>

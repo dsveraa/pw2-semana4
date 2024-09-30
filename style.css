@@ -11,6 +11,5 @@
     .nav-item .dropdown-menu {
         left: auto;
         right: 0;
-        transform: translateX(-20%);
     }
 }
