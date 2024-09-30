@@ -95,7 +95,7 @@ function add_suggestions($packages, $date, $nights) {
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-bell"></i>
+                                Notificaciones <i class="fas fa-bell"></i>
                                 <span class="badge bg-danger" id="count-label"><?php
                                     if (isset($_GET['search'])) {
                                         echo '+1';
